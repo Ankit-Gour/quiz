@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.button {
+  font-size: 10px;
+  height: 22px;
+  margin-top: 10px;
+  width: 200px;
+  background-color: #00050b;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+.button:hover {
+  background-color: #feffff;
+  color: black;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+}
+#a {
+  font-size: 12px;
+}
+#q {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.form-check-input[type="radio"] {
+  border-radius: 50%;
+  border: 5px solid black;
+}
+
+.next {
+  background-color: rgba(0, 0, 251, 0.686);
+  color: rgb(237, 237, 255);
+  border-radius: 50px;
+  width: 80px;
+  margin-left: 30%;
+  margin-top: 10px;
+}
+
+#result {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(9, 9, 9);
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0.1;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#qa {
+  animation: appear 0.1s ease 0ms 1 forwards;
+}
+
+#options {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  padding-top: 10px;
+}
+
+.level {
+  background-color: rgb(54, 54, 178);
+  color: wheat;
+  border-radius: 5px;
+}
+.level:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(54, 54, 178);
+  border: none;
+}
+
+#spin{
+margin-left: 40%;
+margin-top: 10px;
+animation-duration: 0.5s;
+}
+
