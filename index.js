@@ -53,7 +53,7 @@ function options(level) {
 // var right_a="hello";
 var o_c,
   o_word,
-  number_Of_Questions = 1,
+  number_Of_Questions = 5,
   number_Of_Correct_Questions = 0;
 
 
