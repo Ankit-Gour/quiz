@@ -170,6 +170,12 @@ let category = (c, word) => {
   }
 
     
+if(count==number_Of_Questions+1){
+  document.getElementById("next-btn").innerText=` Submit`
+ console.log( document.getElementById("next-btn"));
+ 
+}
+
   if (count == number_Of_Questions + 2) {
 console.log(`count inside the if condition ${count}`);
 
