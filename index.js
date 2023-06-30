@@ -55,7 +55,7 @@ var o_c,
   o_word,
   number_Of_Questions = 5,
   number_Of_Correct_Questions = 0;
-
+var question;
 
 let category = (c, word) => {
   count++;
@@ -78,8 +78,11 @@ let category = (c, word) => {
         // let data = Array.from(old_data.results);
         // data.forEach((e) => {
         // console.log(e);
+        if(old_data.results[0].question!=question){
         var ra = old_data.results[0].correct_answer;
 
+        question=old_data.results[0].question;
+        
         let q = document.getElementById("qa");
         q.innerHTML = `
             
@@ -136,12 +139,12 @@ let category = (c, word) => {
         }
         document.body.append(q);
 
-        return ra;
+        return ra;}
       })
       .then((ra) => {
         let next = document.createElement("div");
         next.innerHTML = `<div>
-          <button class="next" onclick="category(${o_c},'${o_word}'),spinner()" id="next-btn">Next</button>  
+          <button class="next" onclick="category(${o_c},'${o_word}')" id="next-btn">Next</button>  
           </div>`;
         document.getElementById("qa").append(next);
 
@@ -160,27 +163,27 @@ let category = (c, word) => {
           });
         })
         return ra;
+      }).then((data)=>{
+        console.log(question);
+        
       })
   }
 
+    
   if (count == number_Of_Questions + 2) {
-    document.body.innerHTML = ``;
-    let result = document.createElement("div");
-    result.innerHTML = `<div id="result"><p>You Won The Challenge  \n ${number_Of_Correct_Questions}/5</p>
-    </div>
-    `;
-    document.body.append(result);
-  }
-};
-function spinner() {
-  let spinner = document.createElement("div");
-  spinner.innerHTML = `<div class="spinner-border text-primary"  role="status" id="spin">
-  <span class="visually-hidden" >Loading...</span>
-</div>
-`;
-  document.getElementById("next-btn").before(spinner);
-  // document.getElementById("qa").prepend(spinner)
+console.log(`count inside the if condition ${count}`);
+
+  document.body.innerHTML = ``;
+  let result = document.createElement("div");
+  result.innerHTML = `<div id="result"><p>You Won The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
+  </div>
+  `;
+  document.body.append(result);
 }
+  }
+  
+  
+
 
 
 
