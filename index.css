@@ -10,14 +10,15 @@
   background-color: #00050b;
   color: rgb(255, 255, 255);
   border-radius: 5px;
+  animation: appear 0.5s ease 0ms 1 forwards;
 }
-.button:hover {
+/* .button:hover {
   background-color: #feffff;
   color: black;
   border: none;
   font-weight: bold;
   font-size: 15px;
-}
+} */
 #a {
   font-size: 12px;
 }
@@ -68,6 +69,7 @@
 
 #qa {
   animation: appear 0.1s ease 0ms 1 forwards;
+
 }
 
 #options {
@@ -76,6 +78,17 @@
   flex-direction: column;
   height: 200px;
   padding-top: 10px;
+ 
+}
+
+#option1{
+  animation: appear 0.5s ease 0ms 1 forwards;
+}
+#option2{
+  animation: appear .8s ease 0ms 1 forwards;
+}
+#option3{
+  animation: appear 1.1s ease 0ms 1 forwards;
 }
 
 .level {
