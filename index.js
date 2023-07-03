@@ -1,10 +1,9 @@
-var l;
-var count = 0;
-var answer;
+var  number_Of_Questions=5,l,count = 0,answer;
 function options(level) {
   document.getElementById("options").remove();
   l = level;
-  add_category();
+  add_category()
+
 }
 
 
@@ -42,22 +41,15 @@ function options(level) {
 
 
 
-
-
-
-
-
-
-
-
-// var right_a="hello";
-var o_c,
-  o_word,
-  number_Of_Questions = 5,
-  number_Of_Correct_Questions = 0;
-var question;
+var o_c,  o_word,  number_Of_Correct_Questions = 0,question;
 
 let category = (c, word) => {
+  if(count==0){
+  
+      number_Of_Questions=parseInt(prompt("How many questions do you want"))
+      
+  
+}
   count++;
 
   if (count < number_Of_Questions + 1) {
@@ -172,8 +164,8 @@ let category = (c, word) => {
     
 if(count==number_Of_Questions+1){
   document.getElementById("next-btn").innerText=` Submit`
- console.log( document.getElementById("next-btn"));
- 
+  document.getElementById("next-btn").classList.add("submit")
+  
 }
 
   if (count == number_Of_Questions + 2) {
@@ -181,9 +173,15 @@ console.log(`count inside the if condition ${count}`);
 
   document.body.innerHTML = ``;
   let result = document.createElement("div");
+  if(number_Of_Correct_Questions>=0.30*number_Of_Questions){
   result.innerHTML = `<div id="result"><p>You Won The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
   </div>
+  `;}
+  else{
+    result.innerHTML = `<div id="result"><p>You Lose The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
+  </div>
   `;
+  }
   document.body.append(result);
 }
   }
@@ -250,4 +248,5 @@ function add_category() {
   </div>`;
 
   document.body.append(cat);
+
 }
