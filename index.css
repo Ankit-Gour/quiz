@@ -108,3 +108,16 @@ margin-top: 10px;
 animation-duration: 0.5s;
 }
 
+
+.submit {
+	background-color: blue;
+	font-weight: 600;
+	box-shadow: 14px 9px 20px rgb(16, 16, 196);
+	border: none;
+}
+
+
+.input-group{
+  margin-top: 50px;
+  border:1px solid black;
+}
