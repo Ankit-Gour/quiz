@@ -50,9 +50,9 @@
   height: 100vh;
   color: white;
   display: flex;
-  align-items: center;
-
-  justify-content: center;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
 @keyframes appear {
@@ -165,3 +165,21 @@ border: 1px solid green;
 #spin{
   animation-duration: 0.00001s;
 }
+
+
+/* images in result */
+#fail{
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+border-radius:50%;
+}
+#success{
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+border-radius:50%;
+}
+
+
+
