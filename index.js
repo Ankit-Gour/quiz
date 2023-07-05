@@ -1,4 +1,4 @@
-window.onload = document.getElementById("howmany").value ="";
+window.onload = document.getElementById("howmany").value = "";
 var number_Of_Questions = 5;
 
 document.getElementById("sl").addEventListener("click", () => {
@@ -7,12 +7,14 @@ document.getElementById("sl").addEventListener("click", () => {
     document.getElementById("howmanyq").remove();
     add_options();
   } else {
+    document.getElementById("howmany").style=`border:2px solid red`
     let img = document.createElement("img");
     img.src = "https://is.gd/8N8Rv6";
     img.id = "idiot";
     document.body.append(img);
     setTimeout(() => {
       idiot.remove();
+      document.getElementById("howmany").style=``
     }, 3000);
   }
 });
@@ -71,7 +73,9 @@ let category = (c, word) => {
 
     document.getElementById("cat").innerText = ``;
 
-    fetch(`https://opentdb.com/api.php?amount=1&category=${c}&difficulty=${l}`)
+    fetch(
+      `https://opentdb.com/api.php?amount=1&category=${c}&difficulty=${l}&type=multiple`
+    )
       .then((data) => {
         // console.log(`status code:${data.status}`);
 
@@ -99,49 +103,42 @@ let category = (c, word) => {
             old_data.results[0].incorrect_answers
           );
 
-          if (incorrect_answers.length === 3) {
-            q.innerHTML += ` <div class="container">
+          let correct_answer = [
+            old_data.results[0].incorrect_answers[0],
+            old_data.results[0].incorrect_answers[2],
+            old_data.results[0].incorrect_answers[1],
+            old_data.results[0].correct_answer,
+          ];
+          console.log(correct_answer[3]);
+
+          q.innerHTML += ` <div class="container">
               <div class="form-check">  
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onclick="check('exampleRadios1')">
               <label class="form-check-label" for="exampleRadios1" id="label1">
-              ${old_data.results[0].incorrect_answers[0]}
+              ${correct_answer[(count + 1) % 4]}
               </label>
               </div>
               <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"  onclick="check('exampleRadios2')">
               <label class="form-check-label" for="exampleRadios2"   id="label2">
-              ${old_data.results[0].incorrect_answers[2]}
+              ${correct_answer[(count + 2) % 4]}
               </label>
               </div>
               <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2" onclick="check('exampleRadios3')">
               <label class="form-check-label" for="exampleRadios3" id="label3">
-              ${old_data.results[0].incorrect_answers[1]}
+              ${correct_answer[(count + 3) % 4]}
               </label>
               </div>
               <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option2" onclick="check('exampleRadios4')" >
               <label class="form-check-label" for="exampleRadios4" id="label4">
-              ${old_data.results[0].correct_answer}
+              ${correct_answer[count % 4]}
               </label>
             </div>
             
             </div>`;
-          } else {
-            q.innerHTML += ` <div class="container">
-            <div class="form-check">  
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option1" onclick="check('exampleRadios5')" >
-            <label class="form-check-label" for="exampleRadios5" id="label5">
-            ${old_data.results[0].incorrect_answers[0]}
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="option2" onclick="check('exampleRadios6')">
-            <label class="form-check-label" for="exampleRadios6" id="label6">
-            ${old_data.results[0].correct_answer}
-            </label>
-            </div>`;
-          }
+
           document.body.append(q);
 
           return ra;
@@ -191,12 +188,28 @@ let category = (c, word) => {
 
     document.body.innerHTML = ``;
     let result = document.createElement("div");
-    if (number_Of_Correct_Questions >= 0.3 * number_Of_Questions) {
-      result.innerHTML = `<div id="result"><p>You Won The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
+    if (number_Of_Correct_Questions >= 0.4 * number_Of_Questions) {
+      result.innerHTML = `<div id="result">
+      <img src="https://is.gd/AruEOF" id="success" >
+      <p>You Won The Challenge </p>
+      <p>Correct Answers ${number_Of_Correct_Questions}</p>
+      <p>Incorrect Answers ${number_Of_Questions-number_Of_Correct_Questions}</p>
+      <p>Your Strike Rate Was ${
+        (number_Of_Correct_Questions / number_Of_Questions) * 100
+      }%</p>
+     
   </div>
   `;
     } else {
-      result.innerHTML = `<div id="result"><p>You Lose The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
+      
+      result.innerHTML = `<div id="result">
+      <img src="https://is.gd/a93QY5" id="fail" >
+      <p>You Lose The Challenge</p>
+      <p>Correct Answers ${number_Of_Correct_Questions}</p>
+      <p>Incorrect Answers ${number_Of_Questions-number_Of_Correct_Questions}</p>
+      <p>Your Strike Rate Was ${
+        ((number_Of_Correct_Questions / number_Of_Questions) * 100).toFixed(2)
+      }%</p>
   </div>
   `;
     }
