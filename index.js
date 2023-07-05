@@ -1,58 +1,71 @@
-var  number_Of_Questions=5,l,count = 0,answer;
+window.onload = document.getElementById("howmany").value = 5;
+var number_Of_Questions = 5;
+
+document.getElementById("sl").addEventListener("click", () => {
+  number_Of_Questions = document.getElementById("howmany").value;
+  if (number_Of_Questions > 0) {
+    document.getElementById("howmanyq").remove();
+    add_options();
+  } else {
+    let img = document.createElement("img");
+    img.src = "https://is.gd/8N8Rv6";
+    img.id = "idiot";
+    document.body.append(img);
+    setTimeout(() => {
+      idiot.remove();
+    }, 3000);
+  }
+});
+
+function add_options() {
+  let options = document.createElement("div");
+  options.innerHTML = ` <div class="my-3" id="options">
+  <button
+    class="mx-5 my-3 level"
+    onclick="options('easy')"
+    type="button"
+    id="option1"
+  >
+    Easy
+  </button>
+  <button
+    class="mx-5 my-3 level"
+    onclick="options('medium')"
+    type="button"
+    id="option2"
+  >
+    Medium
+  </button>
+  <button
+    class="mx-5 my-3 level"
+    onclick="options('hard')"
+    type="button"
+    id="option3"
+  >
+    Hard
+  </button>
+</div> `;
+  document.body.append(options);
+}
+
+var l,
+  count = 0,
+  answer;
 function options(level) {
   document.getElementById("options").remove();
   l = level;
-  add_category()
-
+  add_category();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var o_c,  o_word,  number_Of_Correct_Questions = 0,question;
+var o_c,
+  o_word,
+  number_Of_Correct_Questions = 0,
+  question;
 
 let category = (c, word) => {
-  if(count==0){
-  
-      number_Of_Questions=parseInt(prompt("How many questions do you want"))
-      
-  
-}
   count++;
 
-  if (count < number_Of_Questions + 1) {
+  if (count <= number_Of_Questions) {
     o_c = c;
     o_word = word;
 
@@ -70,52 +83,52 @@ let category = (c, word) => {
         // let data = Array.from(old_data.results);
         // data.forEach((e) => {
         // console.log(e);
-        if(old_data.results[0].question!=question){
-        var ra = old_data.results[0].correct_answer;
+        if (old_data.results[0].question != question) {
+          var ra = old_data.results[0].correct_answer;
 
-        question=old_data.results[0].question;
-        
-        let q = document.getElementById("qa");
-        q.innerHTML = `
-            
-            <p id="q">${l.toUpperCase()} LEVEL ${word.toUpperCase()}</p>   
+          question = old_data.results[0].question;
+
+          let q = document.getElementById("qa");
+          q.innerHTML = `
+          
+          <p id="q">${l.toUpperCase()} LEVEL ${word.toUpperCase()}</p>   
             
             <p>${count}. ${old_data.results[0].question}</p>   
           `;
-        let incorrect_answers = Array.from(
-          old_data.results[0].incorrect_answers
-        );
+          let incorrect_answers = Array.from(
+            old_data.results[0].incorrect_answers
+          );
 
-        if (incorrect_answers.length === 3) {
-          q.innerHTML += ` <div class="container">
-            <div class="form-check">  
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onclick="check('exampleRadios1')">
-            <label class="form-check-label" for="exampleRadios1" id="label1">
-            ${old_data.results[0].incorrect_answers[0]}
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"  onclick="check('exampleRadios2')">
-            <label class="form-check-label" for="exampleRadios2"   id="label2">
-            ${old_data.results[0].incorrect_answers[2]}
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2" onclick="check('exampleRadios3')">
-            <label class="form-check-label" for="exampleRadios3" id="label3">
-            ${old_data.results[0].incorrect_answers[1]}
-            </label>
-            </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option2" onclick="check('exampleRadios4')" >
-            <label class="form-check-label" for="exampleRadios4" id="label4">
-            ${old_data.results[0].correct_answer}
-            </label>
+          if (incorrect_answers.length === 3) {
+            q.innerHTML += ` <div class="container">
+              <div class="form-check">  
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onclick="check('exampleRadios1')">
+              <label class="form-check-label" for="exampleRadios1" id="label1">
+              ${old_data.results[0].incorrect_answers[0]}
+              </label>
+              </div>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"  onclick="check('exampleRadios2')">
+              <label class="form-check-label" for="exampleRadios2"   id="label2">
+              ${old_data.results[0].incorrect_answers[2]}
+              </label>
+              </div>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2" onclick="check('exampleRadios3')">
+              <label class="form-check-label" for="exampleRadios3" id="label3">
+              ${old_data.results[0].incorrect_answers[1]}
+              </label>
+              </div>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option2" onclick="check('exampleRadios4')" >
+              <label class="form-check-label" for="exampleRadios4" id="label4">
+              ${old_data.results[0].correct_answer}
+              </label>
             </div>
             
             </div>`;
-        } else {
-          q.innerHTML += ` <div class="container">
+          } else {
+            q.innerHTML += ` <div class="container">
             <div class="form-check">  
             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option1" onclick="check('exampleRadios5')" >
             <label class="form-check-label" for="exampleRadios5" id="label5">
@@ -128,20 +141,20 @@ let category = (c, word) => {
             ${old_data.results[0].correct_answer}
             </label>
             </div>`;
-        }
-        document.body.append(q);
+          }
+          document.body.append(q);
 
-        return ra;}
+          return ra;
+        }
       })
       .then((ra) => {
         let next = document.createElement("div");
         next.innerHTML = `<div>
-          <button class="next" onclick="category(${o_c},'${o_word}')" id="next-btn">Next</button>  
-          </div>`;
+        <button class="next" onclick="category(${o_c},'${o_word}'),spinner()" id="next-btn">Next</button>  
+        </div>`;
         document.getElementById("qa").append(next);
 
-        document.getElementById("next-btn").addEventListener("click",()=>{
-
+        document.getElementById("next-btn").addEventListener("click", () => {
           let b = document.getElementsByClassName("form-check-input");
           let a = Array.from(b);
           a.forEach((a) => {
@@ -153,82 +166,54 @@ let category = (c, word) => {
               }
             }
           });
-        })
+        });
+
         return ra;
-      }).then((data)=>{
-        console.log(question);
-        
       })
+      .then((data) => {
+        // console.log(question);
+      });
   }
 
-    
-if(count==number_Of_Questions+1){
-  document.getElementById("next-btn").innerText=` Submit`
-  document.getElementById("next-btn").classList.add("submit")
-  
-}
+  // console.log(`count:${count} number of questions:${number_Of_Questions}`);
 
-  if (count == number_Of_Questions + 2) {
-console.log(`count inside the if condition ${count}`);
+  // console.log(count > number_Of_Questions);
 
-  document.body.innerHTML = ``;
-  let result = document.createElement("div");
-  if(number_Of_Correct_Questions>=0.30*number_Of_Questions){
-  result.innerHTML = `<div id="result"><p>You Won The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
-  </div>
-  `;}
-  else{
-    result.innerHTML = `<div id="result"><p>You Lose The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
+  if (count > number_Of_Questions) {
+    document.getElementById("next-btn").innerText = ` Submit`;
+    document.getElementById("next-btn").classList.add("submit");
+    document.getElementById("next-btn").onclick = result;
+  }
+
+  // if (count == number_Of_Questions+2)
+  function result() {
+    // console.log(`count inside the if condition ${count}`);
+
+    document.body.innerHTML = ``;
+    let result = document.createElement("div");
+    if (number_Of_Correct_Questions >= 0.3 * number_Of_Questions) {
+      result.innerHTML = `<div id="result"><p>You Won The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
   </div>
   `;
+    } else {
+      result.innerHTML = `<div id="result"><p>You Lose The Challenge  \n ${number_Of_Correct_Questions}/${number_Of_Questions}</p>
+  </div>
+  `;
+    }
+    document.body.append(result);
   }
-  document.body.append(result);
-}
-  }
-  
-  
+};
 
-
-
-
-
-function check(id){
-  if(document.getElementById(id).hasAttribute("checked")){
-
-  }else{
-    console.log( document.getElementById(id).outerHTML);
+function check(id) {
+  if (document.getElementById(id).hasAttribute("checked")) {
+  } else {
+    console.log(document.getElementById(id).outerHTML);
     // console.log( document.getElementById(id).outerHTML);
-    document.getElementById(id).outerHTML=`<input class="form-check-input" type="radio" name="exampleRadios" id="${id}" value="option2" checked onclick="check('${id}')">`
+    document.getElementById(
+      id
+    ).outerHTML = `<input class="form-check-input" type="radio" name="exampleRadios" id="${id}" value="option2" checked onclick="check('${id}')">`;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function add_category() {
   let cat = document.createElement("div");
@@ -248,5 +233,13 @@ function add_category() {
   </div>`;
 
   document.body.append(cat);
+}
 
+function spinner() {
+  let spin = document.createElement("div");
+  spin.innerHTML = `<div id="spinner"><div   class="spinner-border text-danger" role="status" id="spin">
+<span class="visually-hidden"   >Loading...</span>
+</div></div>
+`;
+  document.getElementById("qa").append(spin);
 }
