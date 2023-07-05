@@ -102,17 +102,12 @@
   border: none;
 }
 
-#spin{
-margin-left: 40%;
-margin-top: 10px;
-animation-duration: 0.5s;
-}
 
 
 .submit {
 	background-color: blue;
 	font-weight: 600;
-	box-shadow: 14px 9px 20px rgb(16, 16, 196);
+	box-shadow: 5px 2px 30px rgb(24, 24, 227);
 	border: none;
 }
 
@@ -120,4 +115,53 @@ animation-duration: 0.5s;
 .input-group{
   margin-top: 50px;
   border:1px solid black;
+}
+
+
+/* select level button */
+#sl{
+  height: 28px;
+  font-size:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  
+}
+
+#sl:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(29, 29, 242);
+  border: none;
+ 
+}
+
+
+/* 3idiots image */
+#idiot{
+ 
+  width: 100%;
+  
+}
+
+
+/* how many input box */
+#howmany{
+  padding:0 10px;
+border: 1px solid green;
+
+}
+
+
+/* spinner */
+#spinner{
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+ 
+}
+
+#spin{
+  animation-duration: 0.00001s;
 }
