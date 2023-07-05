@@ -1,4 +1,4 @@
-window.onload = document.getElementById("howmany").value = 5;
+window.onload = document.getElementById("howmany").value ="";
 var number_Of_Questions = 5;
 
 document.getElementById("sl").addEventListener("click", () => {
