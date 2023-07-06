@@ -7,14 +7,14 @@ document.getElementById("sl").addEventListener("click", () => {
     document.getElementById("howmanyq").remove();
     add_options();
   } else {
-    document.getElementById("howmany").style=`border:2px solid red`
-    let img = document.createElement("img");
-    img.src = "https://is.gd/8N8Rv6";
-    img.id = "idiot";
+    document.getElementById("howmany").style = `border:2px solid red`;
+    let img = document.createElement("div");
+    img.innerHTML = `<div id="image"><img src="https://is.gd/8N8Rv6"></div>`;
+
     document.body.append(img);
     setTimeout(() => {
-      idiot.remove();
-      document.getElementById("howmany").style=``
+      image.remove();
+      document.getElementById("howmany").style = ``;
     }, 3000);
   }
 });
@@ -90,15 +90,6 @@ let category = (c, word) => {
         if (old_data.results[0].question != question) {
           var ra = old_data.results[0].correct_answer;
 
-          question = old_data.results[0].question;
-
-          let q = document.getElementById("qa");
-          q.innerHTML = `
-          
-          <p id="q">${l.toUpperCase()} LEVEL ${word.toUpperCase()}</p>   
-            
-            <p>${count}. ${old_data.results[0].question}</p>   
-          `;
           let incorrect_answers = Array.from(
             old_data.results[0].incorrect_answers
           );
@@ -110,33 +101,40 @@ let category = (c, word) => {
             old_data.results[0].correct_answer,
           ];
           console.log(correct_answer[3]);
+          question = old_data.results[0].question;
 
-          q.innerHTML += ` <div class="container">
+          let q = document.getElementById("qa");
+          q.innerHTML = `
+          
+          <p id="q">${l.toUpperCase()} LEVEL ${word.toUpperCase()}</p>   
+            <div id="to-center">
+            <p>${count}. ${old_data.results[0].question}</p>   
+         <div class="container" id="ans">
               <div class="form-check">  
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onclick="check('exampleRadios1')">
-              <label class="form-check-label" for="exampleRadios1" id="label1">
+              <label class="form-check-label " for="exampleRadios1" id="label1">
               ${correct_answer[(count + 1) % 4]}
               </label>
               </div>
               <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"  onclick="check('exampleRadios2')">
-              <label class="form-check-label" for="exampleRadios2"   id="label2">
+              <label class="form-check-label  " for="exampleRadios2"   id="label2">
               ${correct_answer[(count + 2) % 4]}
               </label>
               </div>
               <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2" onclick="check('exampleRadios3')">
-              <label class="form-check-label" for="exampleRadios3" id="label3">
+              <label class="form-check-label " for="exampleRadios3" id="label3">
               ${correct_answer[(count + 3) % 4]}
               </label>
               </div>
               <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option2" onclick="check('exampleRadios4')" >
-              <label class="form-check-label" for="exampleRadios4" id="label4">
+              <label class="form-check-label " for="exampleRadios4" id="label4">
               ${correct_answer[count % 4]}
               </label>
             </div>
-            
+            </div>
             </div>`;
 
           document.body.append(q);
@@ -146,7 +144,7 @@ let category = (c, word) => {
       })
       .then((ra) => {
         let next = document.createElement("div");
-        next.innerHTML = `<div>
+        next.innerHTML = `<div id="next-button-div">
         <button class="next" onclick="category(${o_c},'${o_word}'),spinner()" id="next-btn">Next</button>  
         </div>`;
         document.getElementById("qa").append(next);
@@ -193,7 +191,9 @@ let category = (c, word) => {
       <img src="https://is.gd/AruEOF" id="success" >
       <p>You Won The Challenge </p>
       <p>Correct Answers ${number_Of_Correct_Questions}</p>
-      <p>Incorrect Answers ${number_Of_Questions-number_Of_Correct_Questions}</p>
+      <p>Incorrect Answers ${
+        number_Of_Questions - number_Of_Correct_Questions
+      }</p>
       <p>Your Strike Rate Was ${
         (number_Of_Correct_Questions / number_Of_Questions) * 100
       }%</p>
@@ -201,15 +201,17 @@ let category = (c, word) => {
   </div>
   `;
     } else {
-      
       result.innerHTML = `<div id="result">
       <img src="https://is.gd/a93QY5" id="fail" >
       <p>You Lose The Challenge</p>
       <p>Correct Answers ${number_Of_Correct_Questions}</p>
-      <p>Incorrect Answers ${number_Of_Questions-number_Of_Correct_Questions}</p>
-      <p>Your Strike Rate Was ${
-        ((number_Of_Correct_Questions / number_Of_Questions) * 100).toFixed(2)
-      }%</p>
+      <p>Incorrect Answers ${
+        number_Of_Questions - number_Of_Correct_Questions
+      }</p>
+      <p>Your Strike Rate Was ${(
+        (number_Of_Correct_Questions / number_Of_Questions) *
+        100
+      ).toFixed(0)}%</p>
   </div>
   `;
     }
