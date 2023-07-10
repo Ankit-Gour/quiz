@@ -1,6 +1,7 @@
 window.onload = document.getElementById("howmany").value = "";
 var number_Of_Questions = 5;
 
+
 document.getElementById("sl").addEventListener("click", () => {
   number_Of_Questions = document.getElementById("howmany").value;
   if (number_Of_Questions > 0) {
@@ -258,3 +259,8 @@ function spinner() {
 `;
   document.getElementById("qa").append(spin);
 }
+
+
+
+
+
