@@ -1,22 +1,21 @@
 window.onload = document.getElementById("howmany").value = "";
 var number_Of_Questions = 5;
 
-
 document.getElementById("sl").addEventListener("click", () => {
   number_Of_Questions = document.getElementById("howmany").value;
   if (number_Of_Questions > 0) {
     document.getElementById("howmanyq").remove();
     add_options();
   } else {
-    document.getElementById("howmany").style = `border:2px solid red`;
+  
     let img = document.createElement("div");
     img.innerHTML = `<div id="image"><img src="https://is.gd/8N8Rv6"></div>`;
 
     document.body.append(img);
     setTimeout(() => {
       image.remove();
-      document.getElementById("howmany").style = ``;
-    }, 3000);
+   
+    }, 4000);
   }
 });
 
@@ -188,21 +187,22 @@ let category = (c, word) => {
     document.body.innerHTML = ``;
     let result = document.createElement("div");
     if (number_Of_Correct_Questions >= 0.4 * number_Of_Questions) {
-      result.innerHTML = `<div id="result">
+      result.innerHTML = `<div id="result" class="bg-pass">
       <img src="https://is.gd/AruEOF" id="success" >
       <p>You Won The Challenge </p>
       <p>Correct Answers ${number_Of_Correct_Questions}</p>
       <p>Incorrect Answers ${
         number_Of_Questions - number_Of_Correct_Questions
       }</p>
-      <p>Your Strike Rate Was ${
-        (number_Of_Correct_Questions / number_Of_Questions) * 100
-      }%</p>
+      <p>Your Strike Rate Was ${(
+        (number_Of_Correct_Questions / number_Of_Questions) *
+        100
+      ).toFixed(0)}%</p>
      
   </div>
   `;
     } else {
-      result.innerHTML = `<div id="result">
+      result.innerHTML = `<div id="result" class="bg-fail">
       <img src="https://is.gd/a93QY5" id="fail" >
       <p>You Lose The Challenge</p>
       <p>Correct Answers ${number_Of_Correct_Questions}</p>
@@ -259,8 +259,3 @@ function spinner() {
 `;
   document.getElementById("qa").append(spin);
 }
-
-
-
-
-
