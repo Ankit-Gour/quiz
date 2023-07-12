@@ -9,7 +9,7 @@ document.getElementById("sl").addEventListener("click", () => {
   } else {
   
     let img = document.createElement("div");
-    img.innerHTML = `<div id="image"><img src="https://is.gd/8N8Rv6"></div>`;
+    img.innerHTML = `<div id="image"><img src="3idiots.jpeg"></div>`;
 
     document.body.append(img);
     setTimeout(() => {
