@@ -8,14 +8,14 @@ document.getElementById("sl").addEventListener("click", () => {
     add_options();
   } else {
   
-    let img = document.createElement("div");
-    img.innerHTML = `<div id="image"><img src="\quiz\3idiots.jpeg"></div>`;
+    let message = document.createElement("div");
+    message.innerHTML = `<div id="image"><p>Please Attempt At Least One Question</p></div>`;
 
-    document.body.append(img);
+    document.body.append(message);
     setTimeout(() => {
       image.remove();
    
-    }, 4000);
+    }, 3000);
   }
 });
 
@@ -259,3 +259,24 @@ function spinner() {
 `;
   document.getElementById("qa").append(spin);
 }
+
+
+
+
+// changing the text on the select level button on hoever
+
+let a=document.getElementById("sl");
+a.addEventListener("mouseenter",()=>{
+  setTimeout(() => {
+    
+    a.innerHTML=`Go Ahead`
+  },50);
+})
+a.addEventListener("mouseleave",()=>{
+  setTimeout(() => {
+    
+    a.innerHTML=`Select Level`
+  }, 50);
+})
+console.log(a);
+
